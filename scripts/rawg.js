@@ -10,16 +10,16 @@ const funGames = async () => {
 
 }
 
-const searchGames = async (name) => {
+// const searchGames = async (name) => {
 
-  const base = 'https://api.rawg.io/api/games';
-  const query = `?key=${key}&q=${name}`;
+//   const base = 'https://api.rawg.io/api/games';
+//   const query = `?key=${key}&q=${name}`;
 
-  const response = await fetch(base + query);
-  const data = await response.json();
+//   const response = await fetch(base + query);
+//   const data = await response.json();
 
-  console.log(data);
+//   console.log(data);
 
-}
+// }
 
 searchGames("Portal 2")
