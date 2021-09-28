@@ -8,7 +8,6 @@ const screenshotPreviews = document.querySelectorAll('.screenshot img');
 const updateGames = (data) => {
 	const games = data.games;
 
-	console.log(games)
 
 	games.map(game => {
 		addGame.innerHTML += `
