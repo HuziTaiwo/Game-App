@@ -41,18 +41,21 @@ const updateGames = (data) => {
 			gameDetails.classList.add('open');
 			preview.src = image.src;
 
+			games.forEach(game => {
+				game.short_screenshots.forEach(screenshot => console.log(screenshot))
+			})
+
 			//game screenshots
-			screenshotPreviews.forEach(screenshotPreview => {
-				games.forEach(datas => {
-					const prevs = [
-						datas.short_screenshots
-					];
-					prevs.map(prev => {
-						console.log(prev[0])
-						screenshotPreview.src = prev[0];
-					})
-				});
-			});
+			// screenshotPreviews.forEach(screenshotPreview => {
+			// 	games.forEach(datas => {
+			// 		const prevs = [
+			// 			datas.short_screenshots[0]
+			// 		];
+			// 		prevs.forEach((prev,i) => {
+			// 			screenshotPreview.src = prev[i].image;
+			// 		})
+			// 	});
+			// });
 		});
 	});
 
