@@ -27,20 +27,14 @@ const updateGames = (data) => {
 	setTimeout(() => {
 	const gamesImages = document.querySelectorAll('.games img');
 	
-	games.forEach(datas => {
-		const prevs = [
-			datas.short_screenshots[0], 
-			datas.short_screenshots[1], 
-			datas.short_screenshots[2], 
-			datas.short_screenshots[3], 
-			datas.short_screenshots[4], 
-			datas.short_screenshots[5] 
-		];
-		console.log(prevs)
-	});
-
-	// console.log(games)
-
+	// games.forEach(datas => {
+	// 	const prevs = [
+	// 		datas.short_screenshots
+	// 	];
+	// 	prevs.map(prev => {
+	// 		console.log(prev[0].image)
+	// 	})
+	// });
 
 	gamesImages.forEach(image => {
 		image.addEventListener('click', ()=> {
@@ -49,7 +43,15 @@ const updateGames = (data) => {
 
 			//game screenshots
 			screenshotPreviews.forEach(screenshotPreview => {
-				screenshotPreview.src = image.src;
+				games.forEach(datas => {
+					const prevs = [
+						datas.short_screenshots
+					];
+					prevs.map(prev => {
+						console.log(prev[0])
+						screenshotPreview.src = prev[0];
+					})
+				});
 			});
 		});
 	});
