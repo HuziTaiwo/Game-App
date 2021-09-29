@@ -22,6 +22,45 @@ const updateGames = (data) => {
 			</div>
 		`;
 	});
+
+
+	setTimeout(() => {
+	const gamesImages = document.querySelectorAll('.games img');
+	
+	games.forEach(datas => {
+		const prevs = [
+			datas.short_screenshots[0], 
+			datas.short_screenshots[1], 
+			datas.short_screenshots[2], 
+			datas.short_screenshots[3], 
+			datas.short_screenshots[4], 
+			datas.short_screenshots[5] 
+		];
+		console.log(prevs)
+	});
+
+	// console.log(games)
+
+
+	gamesImages.forEach(image => {
+		image.addEventListener('click', ()=> {
+			gameDetails.classList.add('open');
+			preview.src = image.src;
+
+			//game screenshots
+			screenshotPreviews.forEach(screenshotPreview => {
+				screenshotPreview.src = image.src;
+			});
+		});
+	});
+
+	gameDetails.addEventListener('click', (e) => {
+		if (e.target.classList.contains('game-details-container')) {
+			gameDetails.classList.remove('open');
+		}
+	});
+}, 3000)
+
 };
 
 
@@ -36,29 +75,6 @@ const getGames = async (data) => {
 
 }
 
-
-setTimeout( (data) => {
-	const gamesImages = document.querySelectorAll('.games img');
-
-	gamesImages.forEach(image => {
-		image.addEventListener('click', ()=> {
-			gameDetails.classList.add('open');
-			preview.src = image.src;
-
-			//game screenshots
-			console.log(data)
-			screenshotPreviews.forEach(screenshotPreview => {
-				screenshotPreview.src = image.src;
-			});
-		});
-	});
-
-	gameDetails.addEventListener('click', (e) => {
-		if (e.target.classList.contains('game-details-container')) {
-			gameDetails.classList.remove('open');
-		}
-	});
-}, 8000)
 
 
 getGames()
