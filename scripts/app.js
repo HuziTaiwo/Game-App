@@ -3,21 +3,23 @@ const addGame = document.querySelector('.games');
 const gameDetails = document.querySelector('.game-details-container');
 const preview = document.querySelector('.main-image');
 const screenshotPreviews = document.querySelectorAll('.screenshot img');
+const previewTitle = document.querySelector('.rating h3');
+const rating = document.querySelector('.rating p');
 
 
 const updateGames = (data) => {
+
 	const games = data.games;
 
-
-	games.map(game => {
+	games.forEach(({name, released, background_image, rating }) => {
 		addGame.innerHTML += `
 			<div class="game">
 				<div class="game-header">
-					<h3>${game.name}</h3>
-					<h4>${game.released}</h4>
+					<h3>${name}</h3>
+					<h4>${released}</h4>
 				</div>
 				<div class="game-body">
-					<img src="${game.background_image}" alt="${game.slug}">
+					<img src="${background_image}" alt="${name}" data-rating="${rating}">
 				</div>
 			</div>
 		`;
@@ -26,36 +28,14 @@ const updateGames = (data) => {
 
 	setTimeout(() => {
 	const gamesImages = document.querySelectorAll('.games img');
+	const screen = document.querySelector('.screenshot img');
 	
-	// games.forEach(datas => {
-	// 	const prevs = [
-	// 		datas.short_screenshots
-	// 	];
-	// 	prevs.map(prev => {
-	// 		console.log(prev[0].image)
-	// 	})
-	// });
-
 	gamesImages.forEach(image => {
-		image.addEventListener('click', ()=> {
+		image.addEventListener('click', (e)=> {
 			gameDetails.classList.add('open');
 			preview.src = image.src;
-
-			games.forEach(game => {
-				game.short_screenshots.forEach(screenshot => console.log(screenshot))
-			})
-
-			//game screenshots
-			// screenshotPreviews.forEach(screenshotPreview => {
-			// 	games.forEach(datas => {
-			// 		const prevs = [
-			// 			datas.short_screenshots[0]
-			// 		];
-			// 		prevs.forEach((prev,i) => {
-			// 			screenshotPreview.src = prev[i].image;
-			// 		})
-			// 	});
-			// });
+			previewTitle.textContent = e.target.alt;
+			rating.textContent = image.getAttribute('data-rating');
 		});
 	});
 
@@ -70,12 +50,12 @@ const updateGames = (data) => {
 
 
 
-const getGames = async (data) => {
+const getGames = async () => {
 
 	const games = await funGames();
 
 	return {
-		games: games.results,
+		games: games.results
 	}
 
 }
